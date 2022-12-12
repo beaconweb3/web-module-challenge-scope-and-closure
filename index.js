@@ -30,11 +30,14 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  Everytime counter 1 is called, the count will start over new.
+
   2. Which of the two uses a closure? How can you tell?
+  They both use closures. The closures, in counter 1 embrace everything, where the closure in count two only embraces the increase of the count variable.  Which means everytime the counter is used, it continues from where it left off instead of beginning anew.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     Counter one is best in a situation where the count needs to be reset and counter 2 in a scenario where the count does not need to be reset.
 */
 
 // counter1 code
@@ -64,9 +67,9 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
-}
+function inning(){
+  return Math.floor(Math.random()*3);
+  }
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -83,10 +86,18 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(func,num){
+  let team1score=0;
+  let team2score=0;
+ for(let i=0; i<=num; i++) {
+  team1score=team1score+func();
+  team2score=team2score+func();
+  }
+return { 
+  Home: team1score,
+  Away: team2score
 }
-
+}
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
@@ -101,9 +112,12 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(func) {
 
+ return { 
+  Home: func(),
+  Away: func()
+}
 }
 
 
@@ -147,7 +161,7 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ] */
 // NOTE: There is no test associated with this code; if your output matches the given example, consider it complete!
-function scoreboard(/* CODE HERE */) {
+function scoreboard(getInningScoreCB, inningCB, num) {
   /* CODE HERE */
 }
 
